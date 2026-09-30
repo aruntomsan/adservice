@@ -9,6 +9,9 @@ env:
   ECR_REGISTRY: 778477254970.dkr.ecr.ap-south-2.amazonaws.com/adservice
   REPO_NAME: adservice
   
+permissions:
+  id-token: write 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
