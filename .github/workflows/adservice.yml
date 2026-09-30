@@ -1,0 +1,35 @@
+name: Build Adservice Service
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  AWS_REGION: ap-south-2                 
+  ECR_REGISTRY: 778477254970.dkr.ecr.ap-south-2.amazonaws.com/adservice
+  REPO_NAME: adservice
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::778477254970:role/gha-oidc-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./
+          push: true
+          tags: |
+            ${{ env.ECR_REGISTRY }}/${{ env.REPO_NAME }}:${{ github.sha }}
+            ${{ env.ECR_REGISTRY }}/${{ env.REPO_NAME }}:latest
