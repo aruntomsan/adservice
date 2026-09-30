@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: ap-south-2                 
-  ECR_REGISTRY: 778477254970.dkr.ecr.ap-south-2.amazonaws.com/
+  ECR_REGISTRY: 778477254970.dkr.ecr.ap-south-2.amazonaws.com
   REPO_NAME: adservice
   
 permissions:
