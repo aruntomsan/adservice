@@ -13,5 +13,5 @@ jobs:
     uses: aruntomsan/ci-shared/.github/workflows/ci-gha-manifest.yml@main
     with:
       service-name: adservice
-      context: ./src/adservice
-      dockerfile: ./src/adservice/Dockerfile
+      context: ./
+      dockerfile: ./Dockerfile
